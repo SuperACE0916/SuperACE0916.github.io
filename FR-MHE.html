@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- <meta charset="utf-8"> -->
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <!-- <meta name="FR-MHE Description" content="DESCRIPTION META TAG">
+  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
+  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
+  <meta property="og:url" content="URL OF THE WEBSITE"/> -->
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <!-- <meta property="og:image" content="static/image/SUCAS.jpg" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/> -->
+
+
+  <!-- <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG"> -->
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <!-- <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image"> -->
+  <!-- Keywords for your paper to be indexed by-->
+  <!-- <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+
+
+  <title>FR-MHE: Fast and Robust Moving Horizon Estimation for Quadrotors State Estimation under Disturbances</title>
+  <link rel="icon" type="image/x-icon" href="static/images/SUCAS.jpg">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-tooltip/dist/css/bulma-tooltip.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+  <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+  </script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+</head>
+<body>
+
+
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">
+            FR-MHE: Fast and Robust Moving Horizon Estimation for Quadrotors State Estimation under Disturbances
+          </h1>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              This paper has been submitted to the 2026 IEEE International Conference on Robotics & Automation (ICRA)
+            </span>
+            <span class="eql-cntrb">
+              <small><br><sup>*</sup>All author information is removed due to review policy reasons</small>
+            </span>
+          </div>
+
+          <div class="publication-links">
+            <!-- Video link -->
+            <span class="link-block">
+              <a href="static/videos/Web_Publishing.mp4" target="_blank"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                  <i class="fas fa-video"></i>
+                </span>
+                <span>Video</span>
+              </a>
+            </span>
+
+            <!-- Code -->
+            <span class="link-block">
+              <a href="#"
+                onclick="return false;"
+                aria-disabled="true"
+                class="external-link button is-normal is-rounded is-dark has-tooltip-bottom"
+                data-tooltip="The code will be released upon acceptance of this work.">
+                <span class="icon">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>Code</span>
+              </a>
+            </span>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+<!-- FR-MHE Framework Image -->
+<section class="hero is-small" style="padding-top: -3rem;">
+  <div class="hero-body" style="padding-top: 1rem; padding-bottom: 1rem;">
+    <div class="container has-text-centered">
+      <div style="max-width: 78%; margin: 0 auto; text-align: left;">
+        <img src="static/images/Framework_FR-MHE_new.jpg" 
+             alt="FR-MHE framework" 
+             style="width: 100%; height: auto; display: block; margin: 0 auto;">
+        <h2 class="subtitle" style="margin-top: 1rem; font-size: 16px; line-height: 1.5;">
+          The proposed FR-MHE framework. On the left side of the figure, the disturbance force and torque are augmented, which enhances the representation capability and robustness of the quadrotor dynamics model against lumped disturbances. 
+          On the right side of the figure, leveraging the disturbance-augmented model, a fast computation strategy based on 
+          single-iteration gradient descent with prior states is employed, significantly improving the state estimation efficiency of MHE.
+        </h2>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End FR-MHE Framework Image -->
+
+
+
+<!-- Paper abstract -->
+<!-- <section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Accurate and low-latency state estimation is essential for robust quadrotor perception, directly influencing downstream planning and control modules. This paper proposes FR-MHE (Fast and Robust Moving Horizon Estimation), a real-time state estimation framework for quadrotors operating under complex real-world disturbances. We first extend the classical MHE formulation by augmenting the system dynamics with explicit disturbance states (leading to RMHE), modelling three-axis external forces and moments to enhance robustness against unmodeled dynamics and environmental perturbations. To address the high computation typically associated with MHE, particularly introduced by disturbance state augmentation, we then draw a lightweight optimization strategy based on single-iteration gradient descent. Extensive comparative evaluations in both Gazebo simulations and real-world Crazyflie experiments show that FR-MHE achieves a 50 X speed-up in  computational efficiency (reducing iteration time from 14.30 ms to 0.29 ms) over RMHE while preserving high estimation accuracy. While compared to the SOTA (Robust) Extended Kalman Filter, FR-MHE achieves superior robustness and precision, making it well-suited for agile, resource-constrained  aerial platforms. 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+<!-- End paper abstract -->
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified" style="line-height: 1.7;">
+          <p>
+            Accurate and low-latency state estimation is essential for robust quadrotor perception, directly influencing downstream planning and control modules. This paper proposes FR-MHE (Fast and Robust Moving Horizon Estimation), a real-time state estimation framework for quadrotors operating under complex real-world disturbances. We first extend the classical MHE formulation by augmenting the system dynamics with explicit disturbance states (leading to RMHE), modelling three-axis external forces and moments to enhance robustness against unmodeled dynamics and environmental perturbations. To address the high computation typically associated with MHE, particularly introduced by disturbance state augmentation, we then draw a lightweight optimization strategy based on single-iteration gradient descent. Extensive comparative evaluations in both Gazebo simulations and real-world Crazyflie experiments show that FR-MHE achieves a 50 X speed-up in  computational efficiency (reducing iteration time from 14.30 ms to 0.29 ms) over RMHE while preserving high estimation accuracy. While compared to the SOTA (Robust) Extended Kalman Filter, FR-MHE achieves superior robustness and precision, making it well-suited for agile, resource-constrained  aerial platforms. 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+
+
+<!-- Gaps and Contributions (left text + right image) -->
+<section class="section">
+  <div class="container is-max-desktop model-split">
+    <div class="columns is-vcentered">
+
+      <!-- Left: title + paragraphs -->
+      <div class="column is-7">
+        <h2 class="title is-3">Contributions</h2>
+        <div class="content" style="font-size: 17px; max-width: 150%; line-height: 1.6;">
+          <!-- <p>
+            To summarize, despite the widespread use of EKF and MHE for quadrotor state estimation, two key research gaps remain: (1) Lack of Disturbance Awareness: classical EKF and MHE are generally designed without active consideration of lumped disturbances and  their performance deteriorates significantly under real-world disturbances and uncertainties. (2) MHE Computation Burden: although MHE outperforms EKF in accuracy, its computational efficiency is significantly constrained by its complex iterative optimization. To fill these gaps, we propose a Fast and Robust MHE (FR-MHE) framework, to meet low-latency state estimation requirements while maintaining accuracy under complex disturbances. The main contributions are summarized. 
+          </p> -->
+          <p>
+            (1) <strong>Disturbance Resilience</strong>: we introduce explicit disturbance augmentation in system model, enabling FR-MHE to effectively handle unknown disturbances forces and moments that affect both translational and rotational dynamics of the quadrotor. 
+          </p>
+          <p>
+            (2) <strong>Computation Efficiency</strong>: we adopt a single-iteration gradient descent in FR-MHE to reduce the computation burden of traditional MHE, especially under increased state dimensions due to disturbance state augmentation. The computational time complexity is only $\mathcal{O}(N \cdot n^3)$.
+          </p>
+          <p>
+            (3) <strong>Experimental validation</strong>: we conduct comprehensive evaluations of FR-MHE against SOTA (R)MHE and (R)EKF methods using real-world Crazyflie 2.1 platform and Gazebo simulations, covering various levels of measurement noise and disturbances.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right: image + caption -->
+      <div class="column is-6">
+        <figure class="image" style="max-width: 100%; margin-left: auto;">
+          <img src="static/images/principle.png" alt="FR-MHE framework" style="width:100%; height:auto;">
+          <figcaption class="is-size-6" style="margin-top: .75rem; line-height: 1.6; text-align: left;">
+            Digram illustration of the proposed FR-MHE, which obtains state estimation by completing a single iterative gradient descent integrating prior and measurements estimation in a receding horizon manner.
+          </figcaption>
+        </figure>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- Local videos -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <!-- Section title -->
+      <h2 class="title is-3" style="margin-left: 0rem;">Gazebo Simulations</h2>
+
+      <!-- Two videos side by side -->
+      <div class="columns is-centered">
+        
+        <!-- First video -->
+        <div class="column has-text-centered">
+          <video autoplay loop muted playsinline controls style="width:100%; max-width:640px; height:auto;">
+            <source src="static/videos/iris_simulation_1_5.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <p class="is-size-6" style="margin-top: 0.5rem;">
+            <strong>Moderate Case</strong>: Disturbance Force Duration: 5s ($\mu$=1N, $\sigma$=0.1N)
+          </p>
+        </div>
+
+        <!-- Second video -->
+        <div class="column has-text-centered">
+          <video autoplay loop muted playsinline controls style="width:100%; max-width:640px; height:auto;">
+            <source src="static/videos/iris_simulation_5_20.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <p class="is-size-6" style="margin-top: 0.5rem;">
+            <strong>Extreme Case</strong>: Disturbance Force Duration: 20s ($\mu$=5N, $\sigma$=0.2N)
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End local videos -->
+
+
+
+<!-- Motivation panels (two rows, each with 4 panels) -->
+<section class="section" style="padding-top: 1.5rem; background-color:#f5f5f5;">
+  <div class="container">
+
+    <div class="columns is-multiline is-vcentered">
+
+      <!-- (a) video -->
+      <div class="column is-3-desktop is-6-tablet">
+        <figure class="image" style="border: 1px solid #eee; border-radius: 8px; padding: 8.5px;">
+          <video autoplay loop muted playsinline controls style="width:100%; height:250px;">
+            <source src="static/videos/trajectory_animation_10_0.5.mp4" type="video/mp4">
+          </video>
+        </figure>
+        <div class="is-size-6" style="margin-top: .5rem; text-align:center;">
+          (a) <strong>Extreme Case & Noise Level $\mathrm{I}$</strong>
+        </div>
+      </div>
+
+      <!-- (b) video -->
+      <div class="column is-3-desktop is-6-tablet">
+        <figure class="image" style="border: 1px solid #eee; border-radius: 8px; padding: 8.5px;">
+          <video autoplay loop muted playsinline controls style="width:100%; height:250px;">
+            <source src="static/videos/trajectory_animation_100_5.mp4" type="video/mp4">
+          </video>
+        </figure>
+        <div class="is-size-6" style="margin-top: .5rem; text-align:center;">
+          (b) <strong>Extreme Case & Noise Level $\mathrm{III}$</strong>
+        </div>
+      </div>
+
+      <!-- (c) image -->
+      <div class="column is-3-desktop is-6-tablet">
+        <figure class="image" style="border: 1px solid #eee; border-radius: 8px; padding: 8.5px;">
+          <img src="static/images/sim_noise1_agu.jpg" alt="Negative transfer between trees" style="width:100%; height:250px;">
+        </figure>
+        <div class="is-size-6" style="margin-top: .5rem; text-align:center;">
+          (c) <strong>Extreme Case & Noise Level $\mathrm{I}$</strong>
+        </div>
+      </div>
+
+      
+
+      <!-- (d) image -->
+      <div class="column is-3-desktop is-6-tablet">
+        <figure class="image" style="border: 1px solid #eee; border-radius: 8px; padding: 8.5px;">
+          <img src="static/images/sim_noise3_agu.png" alt="MoE vs. Shared predictor" style="width:100%; height:250px;">
+        </figure>
+        <div class="is-size-6" style="margin-top: .5rem; text-align:center;">
+          (d) <strong>Extreme Case & Noise Level $\mathrm{III}$</strong>
+        </div>
+      </div>
+
+      <!-- 第二行 -->
+      <!-- (e) video -->
+      <div class="column is-3-desktop is-6-tablet">
+        <figure class="image" style="border: 1px solid #eee; border-radius: 8px; padding: 8.5px;">
+          <video autoplay loop muted playsinline controls style="width:100%; height:250px;">
+            <source src="static/videos/trajectory_animation_1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </figure>
+        <div class="is-size-6" style="margin-top: .5rem; text-align:center;">
+          (e) <strong>Moderate Case & Noise Level $\mathrm{II}$</strong>
+        </div>
+      </div>
+
+      <!-- (f) video -->
+      <div class="column is-3-desktop is-6-tablet">
+        <figure class="image" style="border: 1px solid #eee; border-radius: 8px; padding: 8.5px;">
+          <video autoplay loop muted playsinline controls style="width:100%; height:250px;">
+            <source src="static/videos/trajectory_animation_2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </figure>
+        <div class="is-size-6" style="margin-top: .5rem; text-align:center;">
+          (f) <strong>Moderate Case & Noise Level $\mathrm{II}$</strong>
+        </div>
+      </div>
+
+      <!-- (g) image -->
+      <div class="column is-3-desktop is-6-tablet">
+        <figure class="image" style="border: 1px solid #eee; border-radius: 8px; padding: 8.5px;">
+          <img src="static/images/m_L_robustness_50_2.5_100.png" alt="Additional result image" style="width:100%; height:250px;">
+        </figure>
+        <div class="is-size-6" style="margin-top: .5rem; text-align:center;">
+          (g) <strong>Moderate Case & Noise Level $\mathrm{II}$</strong>
+        </div>
+      </div>
+
+      <!-- (h) image -->
+      <div class="column is-3-desktop is-6-tablet">
+        <figure class="image" style="border: 1px solid #eee; border-radius: 8px; padding: 8.5px;">
+          <img src="static/images/J_tau_robustness_50_2.5_100.png" alt="Additional result image" style="width:100%; height:250px;">
+        </figure>
+        <div class="is-size-6" style="margin-top: .5rem; text-align:center;">
+          (h) <strong>Moderate Case & Noise Level $\mathrm{II}$</strong>
+        </div>
+      </div>
+
+          <!-- 解释文字 -->
+    <!-- 解释文字：与上面四图同宽 -->
+    <div class="column is-12">
+      <div class="content" style="margin-top:2rem; font-size:16px; line-height:1.6; text-align:justify;">
+        <p>
+          We conduct three experiments to demonstrate the advantages of FR-MHE for quadrotor state estimation in different environments. Fig. (a)–(d) present the results of FR-MHE and FMHE under the Extreme Case with severe disturbances. The results show that FR-MHE consistently exhibits superior generalization, compensates for both internal and external disturbances, and improves state estimation accuracy. Fig. (e) and (f) present the results under different flight trajectories. They demonstrate that although FR-MHE adopts a lightweight computational strategy, it does not sacrifice state estimation effectiveness, and its estimation performance surpasses that of REKF. Fig. (g) and (h) evaluate robustness, showing that FR-MHE maintains accurate position and attitude estimation in the presence of variations in inertial parameters and input uncertainties.        </p>
+      </div>
+    </div>
+
+
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<!-- Local videos -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <!-- Section title -->
+      <h2 class="title is-3" style="margin-left: 0rem;">Crazyflie Experiments</h2>
+
+      <!-- Two videos side by side -->
+      <div class="columns is-centered">
+        
+        <!-- First video -->
+        <div class="column has-text-centered">
+          <video autoplay loop muted playsinline style="width:100%; max-width:640px; height:auto;">
+            <source src="static/videos/crazyflie_demo_1.mp4" type="video/mp4">
+          </video>
+          <p class="is-size-6" style="margin-top: 0.5rem;">
+            Wind disturbance experiment scene (1.5-4.6m/s)
+          </p>
+        </div>
+
+        <!-- Second video -->
+        <div class="column has-text-centered">
+          <video autoplay loop muted playsinline style="width:100%; max-width:640px; height:auto;">
+            <source src="static/videos/crazyflie_demo_2.mp4" type="video/mp4">
+          </video>
+          <p class="is-size-6" style="margin-top: 0.5rem;">
+            Wind disturbance experiment scene (1.5-4.6m/s)
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End local videos -->
+
+
+
+
+<!-- Motivation panels (two rows, each with 4 panels) -->
+<section class="section" style="padding-top: 1.5rem;">
+  <div class="container">
+
+    <div class="columns is-multiline is-vcentered">
+
+      <!-- (a) image  -->
+      <div class="column is-6-desktop is-12-tablet">
+        <figure class="image" style="border: 1px solid #eee; border-radius: 8px; padding: 8.5px;">
+          <img src="static/images/exp_noise1_agu.png" alt="Negative transfer between trees" style="width:100%; height:250px;">
+        </figure>
+        <div class="is-size-6" style="margin-top: .5rem; text-align:center;">
+          (a) <strong>Model augmentation test under Noise Level $\mathrm{I}$</strong>
+        </div>
+      </div>
+
+      <!-- (b) image -->
+      <div class="column is-6-desktop is-12-tablet">
+        <figure class="image" style="border: 1px solid #eee; border-radius: 8px; padding: 8.5px;">
+          <img src="static/images/exp_noise2_agu.png" alt="Negative transfer between trees" style="width:100%; height:250px;">
+        </figure>
+        <div class="is-size-6" style="margin-top: .5rem; text-align:center;">
+          (b) <strong>Model augmentation test under Noise Level $\mathrm{II}$</strong>
+        </div>
+      </div>
+
+      <!-- 第二行 -->
+      <!-- (c) image -->
+      <div class="column is-6-desktop is-12-tablet">
+        <figure class="image" style="border: 1px solid #eee; border-radius: 8px; padding: 8.5px;">
+          <img src="static/images/ComputationComparison.png" alt="Negative transfer between trees" style="width:100%; height:250px;">
+        </figure>
+        <div class="is-size-6" style="margin-top: .5rem; text-align:center;">
+          (c) <strong>Calculation time with window length N=3 (left) and N=4 (right)</strong>
+        </div>
+      </div>
+
+
+      <!-- (d) image -->
+      <div class="column is-6-desktop is-12-tablet">
+        <figure class="image" style="border: 1px solid #eee; border-radius: 8px; padding: 8.5px;">
+          <img src="static/images/Tra_crazyflie_table.png" alt="Negative transfer between trees" style="width:100%; height:250px;">
+        </figure>
+        <div class="is-size-6" style="margin-top: .5rem; text-align:center;">
+          (d) <strong>Comparison of algorithm state estimation results</strong>
+        </div>
+      </div>
+
+
+      <!-- 第三行 -->
+      <!-- (g) image -->
+      <div class="column is-4-desktop is-6-tablet">
+        <figure class="image" style="border: 1px solid #eee; border-radius: 8px; padding: 8.5px;">
+          <img src="static/images/HeavyTail_all.png" alt="Additional result image" style="width:100%; height:370px;">
+        </figure>
+        <div class="is-size-6" style="margin-top: .5rem; text-align:center;">
+          (e) <strong>Test results of FR-MHE under non-Gaussian noise</strong>
+        </div>
+      </div>
+
+      <div class="column is-4-desktop is-6-tablet">
+        <figure class="image" style="border: 1px solid #eee; border-radius: 8px; padding: 8.5px;">
+          <video autoplay loop muted playsinline controls style="width:100%; height:370px;">
+            <source src="static/videos/angle_animation_1_final.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </figure>
+        <div class="is-size-6" style="margin-top: .5rem; text-align:center;">
+          (f) <strong>Comparison of different algorithms on trajectory (a)</strong>
+        </div>
+      </div>
+
+      <!-- (f) video -->
+      <div class="column is-4-desktop is-6-tablet">
+        <figure class="image" style="border: 1px solid #eee; border-radius: 8px; padding: 8.5px;">
+          <video autoplay loop muted playsinline controls style="width:100%; height:370px;">
+            <source src="static/videos/angle_animation_2_final.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </figure>
+        <div class="is-size-6" style="margin-top: .5rem; text-align:center;">
+          (g) <strong>Comparison of different algorithms on trajectory (b)</strong>
+        </div>
+      </div>
+
+      
+
+      <!-- 解释文字 -->
+      <div class="column is-12">
+        <div class="content" style="margin-top:2rem; font-size:16px; line-height:1.6; text-align:justify;">
+          <p>
+            In the real-world experiments, we introduce wind disturbances of 1.5–4.6 m/s and employ the CHINGMU motion capture system to obtain groundtruth pose data of the Crazyflie UAV. Fig. (a) and (b) demonstrate that the state augmentation scheme enables FR-MHE to maintain strong estimation performance across different noise levels.  Fig. (c) shows the computational efficiency of different algorithms. The average computation time for FR-MHE are 0.29 ms (N=3) and 0.36 ms (N=4), representing a 50–70 X speedup compared with RMHE. Fig. (d), (f), and (g) present multi-trajectory comparisons across different algorithms, while Fig. (e) shows the estimation performance under non-Gaussian (heavy-tailed) noise. It demonstrates that FR-MHE maintains an error profile that remains close to Gaussian, with only marginal degradation in accuracy. This highlights its strong robustness to outliers and heavy-tailed noise, achieving performance comparable to full RMHE.
+          </p>
+        </div>
+      </div>
+
+      
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+<!--BibTex citation -->
+  <!-- <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>BibTex Code Here</code></pre>
+    </div>
+</section> -->
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
